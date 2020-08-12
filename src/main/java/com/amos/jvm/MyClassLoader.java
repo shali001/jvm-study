@@ -10,8 +10,8 @@ import java.io.*;
  */
 public class MyClassLoader extends ClassLoader {
 
-    private String rootPath = "d:\\temp";
-
+    private String rootPath = "d:";
+    private String packagePath = "com.amos.jvm.";
     @Override
     protected Class<?> findClass(String name) throws ClassNotFoundException {
 
@@ -31,13 +31,12 @@ public class MyClassLoader extends ClassLoader {
             if (classData == null) {
                 System.out.println("类不存在");
             } else {
-                return defineClass(name, classData, 0, classData.length);
+                return defineClass(packagePath+name, classData, 0, classData.length);
             }
 
         } catch (IOException e) {
             e.printStackTrace();
         }
-
 
         return super.findClass(name);
     }
